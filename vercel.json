@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/anime/download",
+      "dest": "/api/anime/download.js"
+    },
+    {
+      "src": "/anime/info",
+      "dest": "/api/anime/info.js"
+    }
+  ]
+}
