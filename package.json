@@ -5,7 +5,11 @@
     "dev": "vercel dev"
   },
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7", 
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.3.8",
+    "user-agents": "^1.0.1223"
   }
 }
 
