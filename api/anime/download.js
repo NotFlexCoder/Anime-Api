@@ -1,21 +1,22 @@
-import fetch from 'node-fetch';
+const express = require('express');
+const router = express.Router();
+const { watchAnime } = require('../../gogoanime'); // Assuming your main file is named gogoanime.js
 
-export default async function handler(req, res) {
-  const { name } = req.query;
-  if (!name) {
-    return res.status(400).json({ error: 'Name is required' });
-  }
+// GET /anime/download?episode_id=naruto-episode-1
+router.get('/download', async (req, res) => {
+    const { episode_id } = req.query;
 
-  const searchUrl = `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(name)}&page=1`;
-  const searchResponse = await fetch(searchUrl);
-  const searchData = await searchResponse.json();
+    if (!episode_id) {
+        return res.status(400).json({ error: 'episode_id is required' });
+    }
 
-  if (searchData.data && searchData.data.length > 0) {
-    const anime = searchData.data[0];
-    const downloadUrl = anime.url; // You may need to scrape for download links if not available directly.
+    try {
+        const downloadLinks = await watchAnime(episode_id);
+        return res.status(200).json({ episode_id, download_links: downloadLinks });
+    } catch (error) {
+        console.error('Error getting download link:', error.message);
+        return res.status(500).json({ error: 'Failed to fetch download link.' });
+    }
+});
 
-    return res.status(200).json({ download_url: downloadUrl });
-  }
-
-  return res.status(404).json({ error: 'Anime not found' });
-}
+module.exports = router;
