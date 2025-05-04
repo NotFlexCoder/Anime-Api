@@ -76,6 +76,12 @@ curl "http://localhost:3000/api/anime?name=Naruto"
 - ❓ 404 Not Found: If no anime matches the query.
 - 💥 500 Internal Server Error: If API call fails.
 
+## 🛠️ Setup
+
+Watch the following video to learn how to host this API and understand it better 👇
+
+[![Watch the video](https://img.youtube.com/vi/kIcl52nHVzY/hqdefault.jpg)](https://youtu.be/kIcl52nHVzY)
+
 ## 📄 License
 
 This project is licensed under the License - see the [LICENSE](https://github.com/NotFlexCoder/anime-api/blob/main/LICENSE) file for details.
